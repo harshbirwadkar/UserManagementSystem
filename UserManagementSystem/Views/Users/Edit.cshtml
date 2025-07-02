@@ -1,0 +1,37 @@
+﻿@model UserManagementSystem.Models.User
+@{
+    ViewBag.Title = "Edit User";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100" style=>
+    <div class="shadow p-3 mb-5 bg-white" style="max-width: 460px; min-height: 420px; border-radius: 35px; width: 100%;">
+        <div class="container" style="width: 90%;">
+            <h2 class="d-flex justify-content-center" style="max-width: 345px; font-size: 30px; margin-top: 5px; margin-bottom: 30px; color: #000000;">Edit User</h2>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.UserId)
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.FullName, new { @class = "d-flex form-label", style = "margin: 0 0 0 5px; color: #596172;" })
+                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", style = "border-radius: 15px; height: 44px; background-color: #f2f2f2; max-width: 370px;" , required = "required" })
+                    @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                </div>
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.DOB, new { @class = "d-flex form-label", style = "margin: 0 0 0 5px; color: #596172;" })
+                    @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", style = "border-radius: 15px; height: 44px; background-color: #f2f2f2; max-width: 370px;", required = "required" })
+                    @Html.ValidationMessageFor(m => m.DOB, "", new { @class = "text-danger" })
+                </div>
+                <div class="mb-4">
+                    @Html.LabelFor(m => m.Address, new { @class = "d-flex form-label", style = "margin: 0 0 0 5px; color: #596172;" })
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", style = "border-radius: 15px; height: 44px; background-color: #f2f2f2; max-width: 370px;", required = "required" })
+                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                </div>
+                <div class="d-flex gap-2 justify-content-center">
+                    <button type="submit" class="btn btn-success" style="width:100px; border-radius: 20px; background-color: #FB6C6C; height: 44px; color: #fff; font-weight: 500; font-size: 18px; border: none;" >Save</button>
+                    <a href="@Url.Action("Dashboard", "Users")" class="btn btn-secondary" style="width:100px; border-radius: 20px; height: 44px; color: #fff; font-weight: 500; font-size: 18px; border: none;">Cancel</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
